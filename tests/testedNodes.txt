@@ -1,0 +1,21 @@
+classDeclaration
+entryClassDeclaration
+methodDeclaration with returns string,bool with arg int
+fieldDeclaration with array
+returnStmt with int,string,bool
+methodCall
+fieldCall with self,length on array
+localVarDef
+while
+break
+if
+print with string,int
+inc
+equals with int,string
+notEquals with int
+classInstance
+and
+arrayCall
+newArray
+
+

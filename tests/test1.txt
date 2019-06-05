@@ -1,0 +1,13 @@
+entry class general :
+    field t tool;
+    field boolean bool;
+    function main() returns int:
+        var array = new int [3];
+        print(array.length);
+        return 2;
+    end
+end
+
+class tool:
+public field axe string;
+end
