@@ -378,6 +378,24 @@ public class byteCodeGenerator implements IVisitor<Void> {
                     }
                 }
             }
+            else{
+                try {
+                    ClassSymbolTableItem classSymbolTableItem = (ClassSymbolTableItem) SymbolTable.root.get(currentClass);
+                    SymbolTable classSymbolTable = classSymbolTableItem.getSymbolTable();
+                    FieldSymbolTableItem fieldSymbolTableItem = (FieldSymbolTableItem) varSymbolTableItem;
+                    Type returnType = fieldSymbolTableItem.getFieldType();
+                    bufferedWriter.write("aload_0\n");
+                    if(!isLhs){
+                        bufferedWriter.write("getfield "+currentClass+"/"+identifier.getName()+" "+returnType.getCode());
+                        bufferedWriter.write("\n");
+                    }
+                    else{
+                        lhsNode = "putfield "+currentClass+"/"+identifier.getName()+" "+returnType.getCode();
+                    }
+                } catch (ItemNotFoundException | IOException e) {
+                    System.out.println("fieldCall");
+                }
+            }
 
 
         } catch (ItemNotFoundException | IOException e) {
@@ -742,8 +760,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             returned = false;
             whileStat.body.accept(this);
             SymbolTable.pop();
-            if(!returned)
-                bufferedWriter.write("goto "+whileLabel);//TODO check this is true or not
+            bufferedWriter.write("goto "+whileLabel);//TODO check this is true or not
             bufferedWriter.write("\n");
             bufferedWriter.write(endWhileLabel+":");
             bufferedWriter.write("\n");
