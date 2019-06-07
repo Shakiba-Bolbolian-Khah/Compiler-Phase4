@@ -1,0 +1,11 @@
+entry class Test:
+    public field a string;
+    function main() returns int:
+        begin
+            print(a);
+            var a = 5;
+            var b = 3;
+        end
+        return 0;
+    end
+    end

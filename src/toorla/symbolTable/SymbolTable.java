@@ -33,6 +33,10 @@ public class SymbolTable {
         mustBeUsedAfterDefCount++;
     }
 
+    public static void setMustBeUsedAfterDefCount(int mustBeUsedAfterDefCount) {
+        SymbolTable.mustBeUsedAfterDefCount = mustBeUsedAfterDefCount;
+    }
+
     public static int getCountOfDefinedMustBeUsedAfterDefItems()
     {
         return mustBeUsedAfterDefCount;
@@ -98,8 +102,10 @@ public class SymbolTable {
             visitedSymbolTables.add( currentSymbolTable );
             SymbolTableItem value = currentSymbolTable.items.get(key);
             if( value != null )
-                if( value.getDefinitionNumber() <= SymbolTable.mustBeUsedAfterDefCount)
+                if( value.getDefinitionNumber() <= SymbolTable.mustBeUsedAfterDefCount) {
+                    System.out.println("in key "+key+ " value is "+value.getName()+" and mustBeUsedAfterDefCount is "+mustBeUsedAfterDefCount);
                     return value;
+                }
             currentSymbolTable = currentSymbolTable.getPreSymbolTable();
         } while( currentSymbolTable != null &&
                 !visitedSymbolTables.contains( currentSymbolTable ) );

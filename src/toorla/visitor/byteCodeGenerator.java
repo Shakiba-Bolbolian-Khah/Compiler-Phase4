@@ -46,7 +46,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     private boolean lhsAssign;
     private String lhsNode;
-
+    private String initBody;
     private  Stack<String> whileLabels;
     private  Stack<String> endWhileLabels;
 
@@ -54,6 +54,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
     private String currentClass;
 
     private boolean returned;
+
+    private int indexCount;
 
     private ExpressionTypeExtractor expressionTypeExtractor;
 
@@ -65,7 +67,9 @@ public class byteCodeGenerator implements IVisitor<Void> {
         whileLabels = new Stack<>();
         endWhileLabels = new Stack<>();
         currentClass = "";
+        initBody = "";
         returned = false;
+        indexCount = 0;
     }
 
     private  FileWriter bufferedWriter;
@@ -393,7 +397,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
                         lhsNode = "putfield "+currentClass+"/"+identifier.getName()+" "+returnType.getCode();
                     }
                 } catch (ItemNotFoundException | IOException e) {
-                    System.out.println("fieldCall");
+                    System.out.println("Identifier fieldCall");
                 }
             }
 
@@ -829,6 +833,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(LocalVarDef localVarDef) {
+        indexCount++;
+        SymbolTable.setMustBeUsedAfterDefCount(indexCount);
         lhsAssign = true;
         localVarDef.getLocalVarName().accept(this);
         lhsAssign = false;
@@ -926,11 +932,12 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
             bufferedWriter.write("invokespecial "+parentName+"/<init>()V");
             bufferedWriter.write("\n");
+            bufferedWriter.write(initBody);
             bufferedWriter.write("return");
             bufferedWriter.write("\n");
             bufferedWriter.write(".end method");
             bufferedWriter.write("\n");
-
+            initBody = "";
             for(ClassMemberDeclaration method:methods){
                 method.accept(this);
             }
@@ -978,18 +985,24 @@ public class byteCodeGenerator implements IVisitor<Void> {
                 else
                     mem.accept(this);
             }
-
+            System.out.println("****In Class with name: "+entryClassDeclaration.getName().getName());
+            System.out.println(initBody);
             bufferedWriter.write(".method public <init>()V");
+            bufferedWriter.write("\n");
+            bufferedWriter.write(".limit locals 100");
+            bufferedWriter.write("\n");
+            bufferedWriter.write(".limit stack 1000");
             bufferedWriter.write("\n");
             bufferedWriter.write("aload_0");
             bufferedWriter.write("\n");
             bufferedWriter.write("invokespecial "+parentName+"/<init>()V");
             bufferedWriter.write("\n");
+            bufferedWriter.write(initBody);
             bufferedWriter.write("return");
             bufferedWriter.write("\n");
             bufferedWriter.write(".end method");
             bufferedWriter.write("\n");
-
+            initBody = "";
             for(ClassMemberDeclaration method:methods){
                 method.accept(this);
             }
@@ -1015,6 +1028,16 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write(".field "+ fieldDeclaration.getAccessModifier().toStr() + " " + fieldDeclaration.getIdentifier().getName() + " " + fieldDeclaration.getType().getCode());
             //TODO ; in type get code
             bufferedWriter.write("\n");
+            if(!fieldDeclaration.getType().getCode().startsWith("[") && !fieldDeclaration.getType().getCode().startsWith("Lclass_")) {
+                initBody += "aload_0\n";
+                if (fieldDeclaration.getType().getCode().equals("Ljava/lang/String;")) {
+                    initBody += "ldc \"\"\n";
+                } else if (fieldDeclaration.getType().getCode().equals("I") || fieldDeclaration.getType().getCode().equals("Z")) {
+                    initBody += "iconst_0\n";
+                }
+                initBody += "putfield " + currentClass + "/" + fieldDeclaration.getIdentifier().getName() + " " + fieldDeclaration.getType().getCode() + "\n";
+            }
+
         } catch (IOException e) {
             System.out.println("in fieldDeclaration");
         }
@@ -1023,6 +1046,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(ParameterDeclaration parameterDeclaration) {
+        indexCount++;
+        SymbolTable.setMustBeUsedAfterDefCount(indexCount);
         return null;
     }
 
@@ -1046,6 +1071,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
 
             SymbolTable.pushFromQueue();
+            indexCount = 0;
+            SymbolTable.setMustBeUsedAfterDefCount(indexCount);
             for(Statement stmt:methodDeclaration.getBody()){
                 System.out.println("in for of methodDeclaration");
                 stmt.accept(this);

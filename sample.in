@@ -1,47 +1,57 @@
 class test1:
     field gg int[];
+    field ssss string;
     function f() returns string:
         return g();
     end
     function g() returns string:
-        self.gg = new int[5];
-        self.gg[1] = 1387;
-        //print("1");
-        return "shakiba khar khob ast";
+        return "A";
     end
+
     public field isInF bool;
     function loop(a:int) returns bool:
-        var i = 0;
-        while(i < 10) begin
-            if(i == a)
-                break;
-            print(i);
-            i++;
-        end
-        print(i);
-        if(i <> 10)
-            return false;
-        else
-            return true;
+
+        return false;
     end
+
+    function h(a:int, b:int, c:int) returns int:
+        var x = 2;
+        var z = 3;
+        var u = x+z;
+ //       var u = a + b  ;
+/*        var d = a +( b+c);
+
+        print(u);
+        print(d); */
+/*
+        var e = a * b * c;
+        var i = a * (b*c);
+
+        print(e);
+        print(i);
+
+        var j = a - b- c;
+        var k = a - (b-c);
+
+        print(j);
+        print(k);
+
+        var l = a / b/ c;
+
+        var m = a / (b/c);
+        print(l);
+        print(m);
+*/
+        return 6;
 end
 
 entry class test2:
+    field integer int;
+    field booll bool;
+    field strr string;
     function main() returns int:
         var t = new test1();
-        var str = t.f();
-        print(str);
-        if(t.loop(12)) begin
-            print("loop was true");
-            print(78);
-        end
-        else;
-
-        if(t.loop(5) && str == "shakiba mehraban ast" )
-            print("to nabayad inja biay");
-        else if(str == "shakiba khar khob ast" && !t.loop(5))
-            print("ebart bas dorosti ast");
-
+        print(t.h(1,2,4));
         return 0;
     end
 end
