@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="00923222-6d71-4cff-b72d-399f4bf5b085" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artifact/class_test1.j" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/artifact/class_test2.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/class_test2.j" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class_test1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/class_test2.class" beforeDir="false" afterPath="$PROJECT_DIR$/class_test2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample.in" beforeDir="false" afterPath="$PROJECT_DIR$/sample.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" afterDir="false" />
@@ -20,15 +18,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="958" column="39" selection-start-line="958" selection-start-column="39" selection-end-line="958" selection-end-column="39" />
+            <state relative-caret-position="205">
+              <caret line="1009" selection-start-line="1009" selection-end-line="1009" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#30447#30448#0" expanded="true" />
-                <element signature="e#38542#38543#0" expanded="true" />
+                <element signature="e#30118#30119#0" expanded="true" />
+                <element signature="e#37765#37766#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -43,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.in">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
-              <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -111,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>metho</find>
-      <find>pop</find>
       <find>fieldca</find>
       <find>aastore</find>
       <find>equals</find>
@@ -141,6 +137,8 @@
       <find>equal</find>
       <find>nequ</find>
       <find>classD</find>
+      <find>//</find>
+      <find>returnStat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,8 +163,8 @@
         <option value="$PROJECT_DIR$/src/toorla/symbolTable/symbolTableItem/varItems/VarSymbolTableItem.java" />
         <option value="$PROJECT_DIR$/src/toorla/typeChecker/ExpressionTypeExtractor.java" />
         <option value="$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java" />
-        <option value="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" />
         <option value="$PROJECT_DIR$/sample.in" />
+        <option value="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" />
       </list>
     </option>
   </component>
@@ -570,22 +568,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="958" column="39" selection-start-line="958" selection-start-column="39" selection-end-line="958" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#30447#30448#0" expanded="true" />
-            <element signature="e#38542#38543#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sample.in">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
-          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="1009" selection-start-line="1009" selection-end-line="1009" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#30118#30119#0" expanded="true" />
+            <element signature="e#37765#37766#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

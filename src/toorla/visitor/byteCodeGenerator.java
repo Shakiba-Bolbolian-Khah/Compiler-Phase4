@@ -76,7 +76,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     private void classFileMaker(String fileName){
         try {
-            System.out.println("in fileMaker with name:"+fileName);
             bufferedWriter = new FileWriter("./artifact/"+fileName+".j");
         } catch (IOException e) {
             System.out.println("there is something wrong in classFileMaker");
@@ -362,7 +361,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(Identifier identifier) {
         boolean isLhs = lhsAssign;
         lhsAssign = false;
-       // System.out.println("in identifier with name:"+identifier.getName());
         try {
             int index;
             VarSymbolTableItem varSymbolTableItem =(VarSymbolTableItem) SymbolTable.top().get("var_"+identifier.getName());
@@ -683,7 +681,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(PrintLine printStat) {
         try {
             Type printType = printStat.getArg().accept(expressionTypeExtractor);
-            //System.out.println("printStat arg type:"+printType.toString());
 
             if(printType.toString().equals("array of int")){
                 bufferedWriter.write("getstatic java/lang/System/out Ljava/io/PrintStream;");
@@ -803,9 +800,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     @Override
     public Void visit(Return returnStat) {
         returned = true;
-        System.out.println("in first of return");
         Type returnType = returnStat.getReturnedExpr().accept(expressionTypeExtractor);
-        System.out.println("after accept in return");
         returnStat.getReturnedExpr().accept(this);
         try {
             if(returnType.toString().equals("int") || returnType.toString().equals("bool"))
@@ -858,7 +853,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(LocalVarDef localVarDef) {
         indexCount++;
         SymbolTable.setMustBeUsedAfterDefCount(indexCount);
-        System.out.println("indexCount in localVarDef is "+indexCount);
         lhsAssign = true;
         localVarDef.getLocalVarName().accept(this);
         lhsAssign = false;
@@ -866,7 +860,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
         localVarDef.getInitialValue().accept(this);
 
         try {
-            System.out.println("lhsNode is:"+lhsNode);
             bufferedWriter.write(lhsNode);
             bufferedWriter.write("\n");
             lhsNode = "";
@@ -924,7 +917,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     }
 
     @Override
-    public Void visit(ClassDeclaration classDeclaration) {//TODO check inherits
+    public Void visit(ClassDeclaration classDeclaration) {
         SymbolTable.pushFromQueue();
 
         String className = "class_"+classDeclaration.getName().getName();
@@ -1014,8 +1007,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
                 else
                     mem.accept(this);
             }
-            System.out.println("****In Class with name: "+entryClassDeclaration.getName().getName());
-            System.out.println(initBody);
             bufferedWriter.write(".method public <init>()V");
             bufferedWriter.write("\n");
             bufferedWriter.write(".limit locals 100");
@@ -1051,8 +1042,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     }
 
     @Override
-    public Void visit(FieldDeclaration fieldDeclaration) {//TODO for class fields should init or not
-        System.out.println("in first of fieldDeclaration with name:"+fieldDeclaration.getIdentifier().getName());
+    public Void visit(FieldDeclaration fieldDeclaration) {
         try {
             bufferedWriter.write(".field "+ fieldDeclaration.getAccessModifier().toStr() + " " + fieldDeclaration.getIdentifier().getName() + " " + fieldDeclaration.getType().getCode());
             bufferedWriter.write("\n");
@@ -1079,7 +1069,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(MethodDeclaration methodDeclaration) {
-        System.out.println("in first of methodDeclaration with name:"+methodDeclaration.getName().getName());
         indexCount = 0;
         SymbolTable.setMustBeUsedAfterDefCount(indexCount);
 
@@ -1102,7 +1091,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
             SymbolTable.pushFromQueue();
             for(Statement stmt:methodDeclaration.getBody()){
-               // System.out.println("in for of methodDeclaration");
                 stmt.accept(this);
             }
 
@@ -1112,7 +1100,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
         } catch (IOException e) {
             System.out.println("in methodDeclaration");
         }
-        //System.out.println("end of methodDeclaration");
         return null;
     }
 

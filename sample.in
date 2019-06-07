@@ -2,34 +2,23 @@ entry class test2:
 
     public field j int;
     function main() returns int:
-        self.j = 10;
-        var l = new test();
-        l.j = 3;
-        print(l.j);
-        var t = new test2();
-        t.j = 3;
-        if(l.s(t))
-            print("equal");
-        else
-            print("not equal");
-
+        var i = 5;
+        var j = 0;
+        while(i > -1) begin
+            i--;
+            j = 0;
+            if(i == 2)
+                continue;
+            while(j < 7) begin
+                if(j == 5)
+                    break;
+                print(i);
+                print(j);
+                print("*");
+                j++;
+            end
+        end
         return 0;
     end
-
-    function k() returns int:
-        return 5;
-    end
-
-end
-
-class test inherits test2:
-    field k int;
-    function s(a:test2) returns bool:
-        if(a.j == j)
-            return true;
-        else
-            return false;
-    end
-
 end
 

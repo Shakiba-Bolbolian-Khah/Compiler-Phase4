@@ -14,46 +14,80 @@ return
 .method public main()I
 .limit locals 100
 .limit stack 10000
-aload_0
-ldc 10
-putfield class_test2/j I
-new class_test
-dup
-invokespecial class_test/<init>()V
-astore 1
-aload 1
-ldc 3
-putfield class_test/j I
-getstatic java/lang/System/out Ljava/io/PrintStream;
-aload 1
-getfield class_test/j I
-invokevirtual java/io/PrintStream/println(I)V
-new class_test2
-dup
-invokespecial class_test2/<init>()V
-astore 2
-aload 2
-ldc 3
-putfield class_test2/j I
-aload 1
-aload 2
-invokevirtual class_test/s(Lclass_test2;)Z
-ifeq ELSELABEL0
-getstatic java/lang/System/out Ljava/io/PrintStream;
-ldc "equal"
-invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
-goto CONDITIONCOMPLETE1
-ELSELABEL0:
-getstatic java/lang/System/out Ljava/io/PrintStream;
-ldc "not equal"
-invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
-CONDITIONCOMPLETE1:
-ldc 0
-ireturn
-.end method
-.method public k()I
-.limit locals 100
-.limit stack 10000
 ldc 5
+istore 1
+ldc 0
+istore 2
+WHILELABEL0:
+iload 1
+ldc 1
+ineg
+if_icmpgt GTLABEL2
+iconst_0
+goto GTCOMPLETE3
+GTLABEL2:
+iconst_1
+GTCOMPLETE3:
+ifeq ENDWHILELABEL1
+iload 1
+iconst_1
+isub
+istore 1
+ldc 0
+istore 2
+iload 1
+ldc 2
+if_icmpne EQUALLABEL4
+iconst_1
+goto EQUALCOMPLETE5
+EQUALLABEL4:
+iconst_0
+EQUALCOMPLETE5:
+ifeq ELSELABEL6
+goto WHILELABEL0
+goto CONDITIONCOMPLETE7
+ELSELABEL6:
+CONDITIONCOMPLETE7:
+WHILELABEL8:
+iload 2
+ldc 7
+if_icmplt LTLABEL10
+iconst_0
+goto LTCOMPLETE11
+LTLABEL10:
+iconst_1
+LTCOMPLETE11:
+ifeq ENDWHILELABEL9
+iload 2
+ldc 5
+if_icmpne EQUALLABEL12
+iconst_1
+goto EQUALCOMPLETE13
+EQUALLABEL12:
+iconst_0
+EQUALCOMPLETE13:
+ifeq ELSELABEL14
+goto ENDWHILELABEL9
+goto CONDITIONCOMPLETE15
+ELSELABEL14:
+CONDITIONCOMPLETE15:
+getstatic java/lang/System/out Ljava/io/PrintStream;
+iload 1
+invokevirtual java/io/PrintStream/println(I)V
+getstatic java/lang/System/out Ljava/io/PrintStream;
+iload 2
+invokevirtual java/io/PrintStream/println(I)V
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ldc "*"
+invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+iload 2
+iconst_1
+iadd
+istore 2
+goto WHILELABEL8
+ENDWHILELABEL9:
+goto WHILELABEL0
+ENDWHILELABEL1:
+ldc 0
 ireturn
 .end method
