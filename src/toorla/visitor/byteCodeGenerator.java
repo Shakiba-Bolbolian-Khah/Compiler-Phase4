@@ -670,12 +670,22 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(PrintLine printStat) {
         try {
             Type printType = printStat.getArg().accept(expressionTypeExtractor);
+            //System.out.println("printStat arg type:"+printType.toString());
 
-            bufferedWriter.write("getstatic java/lang/System/out Ljava/io/PrintStream;");
-            bufferedWriter.write("\n");
-            printStat.getArg().accept(this);
-            bufferedWriter.write("invokevirtual java/io/PrintStream/println("+ printType.getCode() +")V");
-            bufferedWriter.write("\n");
+            if(printType.toString().equals("array of int")){
+                bufferedWriter.write("getstatic java/lang/System/out Ljava/io/PrintStream;");
+                bufferedWriter.write("\n");
+                printStat.getArg().accept(this);
+                bufferedWriter.write("invokestatic java/util/Arrays/toString([I)Ljava/lang/String;\n");
+                bufferedWriter.write("invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V\n");
+            }
+            else {
+                bufferedWriter.write("getstatic java/lang/System/out Ljava/io/PrintStream;");
+                bufferedWriter.write("\n");
+                printStat.getArg().accept(this);
+                bufferedWriter.write("invokevirtual java/io/PrintStream/println(" + printType.getCode() + ")V");
+                bufferedWriter.write("\n");
+            }
         } catch (IOException e) {
             System.out.println("In Print!!!");
         }
@@ -995,7 +1005,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
             bufferedWriter.write(".limit locals 100");
             bufferedWriter.write("\n");
-            bufferedWriter.write(".limit stack 1000");
+            bufferedWriter.write(".limit stack 10000");
             bufferedWriter.write("\n");
             bufferedWriter.write("aload_0");
             bufferedWriter.write("\n");
@@ -1073,7 +1083,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
             bufferedWriter.write(".limit locals 100");
             bufferedWriter.write("\n");
-            bufferedWriter.write(".limit stack 1000");
+            bufferedWriter.write(".limit stack 10000");
             bufferedWriter.write("\n");
 
             SymbolTable.pushFromQueue();
@@ -1116,9 +1126,9 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
             bufferedWriter.write(".method public static main([Ljava/lang/String;)V");
             bufferedWriter.write("\n");
-            bufferedWriter.write(".limit locals 10");
+            bufferedWriter.write(".limit locals 1000");
             bufferedWriter.write("\n");
-            bufferedWriter.write(".limit stack 100");
+            bufferedWriter.write(".limit stack 10000");
             bufferedWriter.write("\n");
             bufferedWriter.write("new " + entryClass);
             bufferedWriter.write("\n");

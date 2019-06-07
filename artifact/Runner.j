@@ -1,8 +1,8 @@
 .class public Runner
 .super java/lang/Object
 .method public static main([Ljava/lang/String;)V
-.limit locals 10
-.limit stack 100
+.limit locals 1000
+.limit stack 10000
 new class_test2
 dup
 invokespecial class_test2/<init>()V

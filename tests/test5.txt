@@ -1,0 +1,31 @@
+class test1:
+    //public field o int;
+    function k() returns test1:
+        //o = 1;
+        //b.i = 15;
+        /*if(b.k(25))
+            print("Hosna bar khalafe man bi adab ast.");
+        b.i = 25;*/
+        return self;
+    end
+
+
+end
+
+entry class test2:
+    function main() returns int:
+        var h = new test1();
+        var ll = h.k();
+        //print(ll.o);
+        print(i);
+        return 0;
+    end
+    public field i int;
+    /*function k(l : int) returns bool:
+        else if(l == 18)
+            return true;
+        else
+            return false;
+    end*/
+end
+

@@ -75,10 +75,10 @@ public class SymbolTable {
     }
 
     public SymbolTableItem get(String key) throws ItemNotFoundException {
-        System.out.println("in get with key:"+key);
-        for(SymbolTableItem i : items.values()){
-            System.out.println(i.getKey());
-        }
+//        System.out.println("in get with key:"+key);
+//        for(SymbolTableItem i : items.values()){
+//            System.out.println(i.getKey());
+//        }
         Set<SymbolTable> visitedSymbolTables = new HashSet<>();
         return getSymbolTableItemInCurrentOrParents(key, visitedSymbolTables,this);
     }

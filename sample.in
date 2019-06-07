@@ -1,58 +1,13 @@
-class test1:
-    /*field gg int[];
-    field ssss string;
-    function f() returns string:
-        return g();
-    end
-    function g() returns string:
-        return "A";
-    end
-
-    public field isInF bool;
-    function loop(a:int) returns bool:
-
-        return false;
-    end*/
-
-    function h(a:int, b:int, c:int) returns int:
-        var x = 2;
-        var z = 3;
-        var u = x+z;
-        print(u);
-        var u = a + b  ;
-        var d = a +( b+c);
-
-        print(u);
-        print(d);
-
-        var e = a * b * c;
-        var i = (a * (b+c) / 2 ) + b -a;
-
-        print(e);
-        print(i);
-
-        var j = a - b- c;
-        var k = a - (b-c);
-
-        print(j);
-        print(k);
-
-        var l = c / b / a;
-
-        var m = c /(b/a) ;
-        print(l);
-        print(m);
-
-        return 6;
-end
-
 entry class test2:
-    /*field integer int;
-    field booll bool;
-    field strr string;*/
     function main() returns int:
-        var t = new test1();
-        print(t.h(1,2,4));
+        var array = new int[3];
+        var i = array.length-1;
+        while(i>-1) begin
+            array[i] = i;
+            i--;
+        end
+        print(array);
         return 0;
     end
+
 end
