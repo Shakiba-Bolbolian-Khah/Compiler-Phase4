@@ -21,12 +21,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="634" column="102" selection-start-line="634" selection-start-column="102" selection-end-line="634" selection-end-column="102" />
+            <state relative-caret-position="580">
+              <caret line="273" column="65" selection-start-line="273" selection-start-column="65" selection-end-line="273" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#30769#30770#0" expanded="true" />
-                <element signature="e#38648#38649#0" expanded="true" />
+                <element signature="e#30447#30448#0" expanded="true" />
+                <element signature="e#38351#38352#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="162">
+              <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -109,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>curr</find>
       <find>returnstat</find>
       <find>metho</find>
       <find>pop</find>
@@ -139,6 +138,7 @@
       <find>prints</find>
       <find>newA</find>
       <find>equal</find>
+      <find>nequ</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -570,19 +570,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="162">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="634" column="102" selection-start-line="634" selection-start-column="102" selection-end-line="634" selection-end-column="102" />
+        <state relative-caret-position="580">
+          <caret line="273" column="65" selection-start-line="273" selection-start-column="65" selection-end-line="273" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#30769#30770#0" expanded="true" />
-            <element signature="e#38648#38649#0" expanded="true" />
+            <element signature="e#30447#30448#0" expanded="true" />
+            <element signature="e#38351#38352#0" expanded="true" />
           </folding>
         </state>
       </provider>

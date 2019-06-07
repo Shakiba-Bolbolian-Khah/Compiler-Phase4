@@ -77,7 +77,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     private void classFileMaker(String fileName){
         try {
             System.out.println("in fileMaker with name:"+fileName);
-            bufferedWriter = new FileWriter("./artifact/"+fileName+".j");//TODO it should be in artifact
+            bufferedWriter = new FileWriter("./artifact/"+fileName+".j");
         } catch (IOException e) {
             System.out.println("there is something wrong in classFileMaker");
         }
@@ -172,13 +172,13 @@ public class byteCodeGenerator implements IVisitor<Void> {
             equalsExpr.getLhs().accept(this);
             equalsExpr.getRhs().accept(this);
             try {
-                if(lhsType.toString().equals("array of string"))
+                if(lhsType.toString().equals("array of int") || lhsType.toString().equals("array of bool"))
                 {
-                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
                     bufferedWriter.write("\n");
                 }
                 else {
-                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
                     bufferedWriter.write("\n");
                 }
             } catch (IOException e) {
@@ -250,7 +250,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(And andExpr) {
         try {
             andExpr.getLhs().accept(this);
-            bufferedWriter.write("ifeq ANDLABEL"+labelIndex+"\n");//TODO check ifeq
+            bufferedWriter.write("ifeq ANDLABEL"+labelIndex+"\n");
             int endLabel = labelIndex;
             labelIndex++;
             andExpr.getRhs().accept(this);
@@ -271,7 +271,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(Or orExpr) {
         try {
             orExpr.getLhs().accept(this);
-            bufferedWriter.write("ifne ORLABEL"+labelIndex+"\n");//TODO check ifeq
+            bufferedWriter.write("ifne ORLABEL"+labelIndex+"\n");
             int endLabel = labelIndex;
             labelIndex++;
             orExpr.getRhs().accept(this);
@@ -318,8 +318,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     }
 
     @Override
-    public Void visit(MethodCall methodCall) {//TODO handle return type
-        System.out.println("in first of methodCall with name:"+methodCall.getMethodName().getName());
+    public Void visit(MethodCall methodCall) {
         Type instanceType = methodCall.getInstance().accept(expressionTypeExtractor);
 
         methodCall.getInstance().accept(this);
@@ -363,12 +362,11 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(Identifier identifier) {
         boolean isLhs = lhsAssign;
         lhsAssign = false;
-        System.out.println("in identifier with name:"+identifier.getName());
+       // System.out.println("in identifier with name:"+identifier.getName());
         try {
             int index;
             VarSymbolTableItem varSymbolTableItem =(VarSymbolTableItem) SymbolTable.top().get("var_"+identifier.getName());
             if(varSymbolTableItem.isLocalVar()){
-                System.out.println("islocalvar");
                 LocalVariableSymbolTableItem localVariableSymbolTableItem = (LocalVariableSymbolTableItem) varSymbolTableItem;
                 index = localVariableSymbolTableItem.getIndex();
                 String typeName = localVariableSymbolTableItem.getVarType().toString();
@@ -572,7 +570,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             System.out.println("in arrayCall:"+instanceType.toString());
             if(instanceType.toString().equals("array of int") | instanceType.toString().equals("array of bool")) {
                 if(!isLhs){
-                    bufferedWriter.write("iaload");//TODO maybe we need to push iastore
+                    bufferedWriter.write("iaload");
                     bufferedWriter.write("\n");
 
                 }
@@ -630,13 +628,13 @@ public class byteCodeGenerator implements IVisitor<Void> {
             notEquals.getLhs().accept(this);
             notEquals.getRhs().accept(this);
             try {
-                if(lhsType.toString().equals("array of string"))
+                if(lhsType.toString().equals("array of int") || lhsType.toString().equals("array of bool"))
                 {
-                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
                     bufferedWriter.write("\n");
                 }
                 else {
-                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
                     bufferedWriter.write("\n");
                 }
             } catch (IOException e) {
@@ -709,7 +707,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(Assign assignStat) {
-        System.out.println("in assignStat");
         lhsAssign = true;
         assignStat.getLvalue().accept(this);
         lhsAssign = false;
@@ -717,7 +714,6 @@ public class byteCodeGenerator implements IVisitor<Void> {
         assignStat.getRvalue().accept(this);
 
         try {
-            System.out.println("lhsNode is:"+lhsNode);
             bufferedWriter.write(lhsNode);
             bufferedWriter.write("\n");
             lhsNode = "";
@@ -791,7 +787,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             returned = false;
             whileStat.body.accept(this);
             SymbolTable.pop();
-            bufferedWriter.write("goto "+whileLabel);//TODO check this is true or not
+            bufferedWriter.write("goto "+whileLabel);
             bufferedWriter.write("\n");
             bufferedWriter.write(endWhileLabel+":");
             bufferedWriter.write("\n");
@@ -928,7 +924,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     }
 
     @Override
-    public Void visit(ClassDeclaration classDeclaration) {
+    public Void visit(ClassDeclaration classDeclaration) {//TODO check inherits
         SymbolTable.pushFromQueue();
 
         String className = "class_"+classDeclaration.getName().getName();
@@ -1051,11 +1047,10 @@ public class byteCodeGenerator implements IVisitor<Void> {
     }
 
     @Override
-    public Void visit(FieldDeclaration fieldDeclaration) {
+    public Void visit(FieldDeclaration fieldDeclaration) {//TODO for class fields should init or not
         System.out.println("in first of fieldDeclaration with name:"+fieldDeclaration.getIdentifier().getName());
         try {
             bufferedWriter.write(".field "+ fieldDeclaration.getAccessModifier().toStr() + " " + fieldDeclaration.getIdentifier().getName() + " " + fieldDeclaration.getType().getCode());
-            //TODO ; in type get code
             bufferedWriter.write("\n");
             if(!fieldDeclaration.getType().getCode().startsWith("[") && !fieldDeclaration.getType().getCode().startsWith("Lclass_")) {
                 initBody += "aload_0\n";
