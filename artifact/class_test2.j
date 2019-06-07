@@ -1,6 +1,5 @@
 .class public class_test2
 .super java/lang/Object
-.field public t Lclass_test2;
 .field public j I
 .method public <init>()V
 .limit locals 100
@@ -15,40 +14,40 @@ return
 .method public main()I
 .limit locals 100
 .limit stack 10000
+aload_0
 ldc 10
-istore 1
-WHILELABEL0:
-iload 1
-ldc 0
-if_icmpgt GTLABEL2
-iconst_0
-goto GTCOMPLETE3
-GTLABEL2:
-iconst_1
-GTCOMPLETE3:
-ifeq ENDWHILELABEL1
-iload 1
-iconst_1
-isub
-istore 1
-iload 1
+putfield class_test2/j I
+new class_test
+dup
+invokespecial class_test/<init>()V
+astore 1
+aload 1
 ldc 3
-if_icmpne EQUALLABEL4
-iconst_1
-goto EQUALCOMPLETE5
-EQUALLABEL4:
-iconst_0
-EQUALCOMPLETE5:
-ifeq ELSELABEL6
-goto WHILELABEL0
-goto CONDITIONCOMPLETE7
-ELSELABEL6:
-CONDITIONCOMPLETE7:
+putfield class_test/j I
 getstatic java/lang/System/out Ljava/io/PrintStream;
-iload 1
+aload 1
+getfield class_test/j I
 invokevirtual java/io/PrintStream/println(I)V
-goto WHILELABEL0
-ENDWHILELABEL1:
+new class_test2
+dup
+invokespecial class_test2/<init>()V
+astore 2
+aload 2
+ldc 3
+putfield class_test2/j I
+aload 1
+aload 2
+invokevirtual class_test/s(Lclass_test2;)Z
+ifeq ELSELABEL0
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ldc "equal"
+invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+goto CONDITIONCOMPLETE1
+ELSELABEL0:
+getstatic java/lang/System/out Ljava/io/PrintStream;
+ldc "not equal"
+invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V
+CONDITIONCOMPLETE1:
 ldc 0
 ireturn
 .end method

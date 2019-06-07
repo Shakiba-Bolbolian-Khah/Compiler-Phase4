@@ -953,6 +953,10 @@ public class byteCodeGenerator implements IVisitor<Void> {
             }
             bufferedWriter.write(".method public <init>()V");
             bufferedWriter.write("\n");
+            bufferedWriter.write(".limit locals 100");
+            bufferedWriter.write("\n");
+            bufferedWriter.write(".limit stack 10000");
+            bufferedWriter.write("\n");
             bufferedWriter.write("aload_0");
             bufferedWriter.write("\n");
             bufferedWriter.write("invokespecial "+parentName+"/<init>()V");

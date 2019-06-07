@@ -1,14 +1,17 @@
 entry class test2:
-    public field t test2;
+
     public field j int;
     function main() returns int:
-        var i = 10;
-        while(i>0) begin
-            i--;
-            if(i== 3)
-                continue;
-            print(i);
-        end
+        self.j = 10;
+        var l = new test();
+        l.j = 3;
+        print(l.j);
+        var t = new test2();
+        t.j = 3;
+        if(l.s(t))
+            print("equal");
+        else
+            print("not equal");
 
         return 0;
     end
@@ -18,3 +21,15 @@ entry class test2:
     end
 
 end
+
+class test inherits test2:
+    field k int;
+    function s(a:test2) returns bool:
+        if(a.j == j)
+            return true;
+        else
+            return false;
+    end
+
+end
+
