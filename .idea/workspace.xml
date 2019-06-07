@@ -3,17 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="00923222-6d71-4cff-b72d-399f4bf5b085" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/Runner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artifact/Runner.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/Runner.j" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artifact/class_test1.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/class_test1.j" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artifact/class_test2.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/class_test2.j" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class_Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/class_test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/class_test1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class_test2.class" beforeDir="false" afterPath="$PROJECT_DIR$/class_test2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample.in" beforeDir="false" afterPath="$PROJECT_DIR$/sample.in" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/toorla/symbolTable/SymbolTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/toorla/symbolTable/SymbolTable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/toorla/visitor/byteCodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/toorla/visitor/byteCodeGenerator.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,12 +21,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="679" column="105" selection-start-line="679" selection-start-column="105" selection-end-line="679" selection-end-column="105" />
+            <state relative-caret-position="367">
+              <caret line="634" column="102" selection-start-line="634" selection-start-column="102" selection-end-line="634" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#30085#30086#0" expanded="true" />
-                <element signature="e#37964#37965#0" expanded="true" />
+                <element signature="e#30769#30770#0" expanded="true" />
+                <element signature="e#38648#38649#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            <state relative-caret-position="342">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -116,9 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fieldc</find>
-      <find>methodc</find>
-      <find>return</find>
       <find>curr</find>
       <find>returnstat</find>
       <find>metho</find>
@@ -146,6 +136,9 @@
       <find>methodC</find>
       <find>printst</find>
       <find>.li</find>
+      <find>prints</find>
+      <find>newA</find>
+      <find>equal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -577,19 +570,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+        <state relative-caret-position="342">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="679" column="105" selection-start-line="679" selection-start-column="105" selection-end-line="679" selection-end-column="105" />
+        <state relative-caret-position="367">
+          <caret line="634" column="102" selection-start-line="634" selection-start-column="102" selection-end-line="634" selection-end-column="102" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#30085#30086#0" expanded="true" />
-            <element signature="e#37964#37965#0" expanded="true" />
+            <element signature="e#30769#30770#0" expanded="true" />
+            <element signature="e#38648#38649#0" expanded="true" />
           </folding>
         </state>
       </provider>

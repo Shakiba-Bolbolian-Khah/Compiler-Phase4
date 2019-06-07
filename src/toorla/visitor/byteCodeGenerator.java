@@ -172,7 +172,15 @@ public class byteCodeGenerator implements IVisitor<Void> {
             equalsExpr.getLhs().accept(this);
             equalsExpr.getRhs().accept(this);
             try {
-                bufferedWriter.write("invokestatic java/util/Arrays.equals("+lhsType.getCode()+lhsType.getCode()+")Z\n" );
+                if(lhsType.toString().equals("array of string"))
+                {
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
+                    bufferedWriter.write("\n");
+                }
+                else {
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
+                    bufferedWriter.write("\n");
+                }
             } catch (IOException e) {
                 System.out.println("in equals");
             }
@@ -438,7 +446,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
                 bufferedWriter.write("newarray "+arrayType);
             }
             else if( arrayType.equals("string")){
-                bufferedWriter.write("anewarray Ljava/lang/String;"); //TODO check it later
+                bufferedWriter.write("anewarray java/lang/String");
             }
             else{
                 bufferedWriter.write("anewarray class_" + arrayType);
@@ -622,8 +630,15 @@ public class byteCodeGenerator implements IVisitor<Void> {
             notEquals.getLhs().accept(this);
             notEquals.getRhs().accept(this);
             try {
-                bufferedWriter.write("invokestatic java/util/Arrays.equals("+lhsType.getCode()+lhsType.getCode()+")Z" );
-                bufferedWriter.write("\n");
+                if(lhsType.toString().equals("array of string"))
+                {
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals("+"[Ljava/lang/Object;[Ljava/lang/Object;"+")Z" );
+                    bufferedWriter.write("\n");
+                }
+                else {
+                    bufferedWriter.write("invokestatic java/util/Arrays.equals(" + lhsType.getCode() + lhsType.getCode() + ")Z");
+                    bufferedWriter.write("\n");
+                }
             } catch (IOException e) {
                 System.out.println("in equals");
             }
