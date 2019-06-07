@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="00923222-6d71-4cff-b72d-399f4bf5b085" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Child.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Example.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/Runner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/artifact/Runner.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/Runner.j" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artifact/class_Test.j" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/artifact/class_test1.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/class_test1.j" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class_general.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/artifact/class_test2.j" beforeDir="false" afterPath="$PROJECT_DIR$/artifact/class_test2.j" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/class_test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/class_test1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/class_tool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/class_test2.class" beforeDir="false" afterPath="$PROJECT_DIR$/class_test2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample.in" beforeDir="false" afterPath="$PROJECT_DIR$/sample.in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java" afterDir="false" />
@@ -31,10 +26,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="360" column="99" selection-start-line="360" selection-start-column="95" selection-end-line="360" selection-end-column="99" />
+            <state relative-caret-position="18">
+              <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#37331#37332#0" expanded="true" />
+                <element signature="e#37358#37359#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +58,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample.in">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="184">
+              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -79,11 +76,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
+            <state relative-caret-position="95">
+              <caret line="80" column="3" selection-start-line="77" selection-end-line="80" selection-end-column="3" />
               <folding>
-                <element signature="e#3795#3796#0" expanded="true" />
-                <element signature="e#3890#3891#0" expanded="true" />
+                <element signature="e#3797#3798#0" expanded="true" />
+                <element signature="e#3892#3893#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,13 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>whileLabels</find>
-      <find>string</find>
-      <find>Stringva</find>
-      <find>intval</find>
-      <find>ifneq</find>
-      <find>CONDITIONCOMPLETE</find>
-      <find>LABEL</find>
       <find>an</find>
       <find>method</find>
       <find>self</find>
@@ -137,12 +127,19 @@
       <find>noteq</find>
       <find>whil</find>
       <find>classDe</find>
-      <find>identifier</find>
       <find>fieldDe</find>
-      <find>methodDec</find>
       <find>identifi</find>
       <find>methodDecl</find>
       <find>var_</find>
+      <find>assigns</find>
+      <find>System.out</find>
+      <find>methodDecla</find>
+      <find>assign</find>
+      <find>identifier</find>
+      <find>methodDec</find>
+      <find>istore_</find>
+      <find>aload_</find>
+      <find>astore_</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -266,7 +263,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Tool Output" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.28967813" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.22308546" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="ANTLR Preview" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -548,29 +545,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toorla/symbolTable/SymbolTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="35" column="76" selection-start-line="35" selection-start-column="76" selection-end-line="35" selection-end-column="76" />
+        <state relative-caret-position="95">
+          <caret line="80" column="3" selection-start-line="77" selection-end-line="80" selection-end-column="3" />
           <folding>
-            <element signature="e#3795#3796#0" expanded="true" />
-            <element signature="e#3890#3891#0" expanded="true" />
+            <element signature="e#3797#3798#0" expanded="true" />
+            <element signature="e#3892#3893#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/toorla/visitor/byteCodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="360" column="99" selection-start-line="360" selection-start-column="95" selection-end-line="360" selection-end-column="99" />
+        <state relative-caret-position="18">
+          <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#37331#37332#0" expanded="true" />
+            <element signature="e#37358#37359#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.in">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="184">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
         </state>
       </provider>
     </entry>

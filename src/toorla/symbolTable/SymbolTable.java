@@ -103,7 +103,7 @@ public class SymbolTable {
             SymbolTableItem value = currentSymbolTable.items.get(key);
             if( value != null )
                 if( value.getDefinitionNumber() <= SymbolTable.mustBeUsedAfterDefCount) {
-                    System.out.println("in key "+key+ " value is "+value.getName()+" and mustBeUsedAfterDefCount is "+mustBeUsedAfterDefCount);
+                    //System.out.println("in key "+key+ " value is "+value.getName()+" and mustBeUsedAfterDefCount is "+mustBeUsedAfterDefCount);
                     return value;
                 }
             currentSymbolTable = currentSymbolTable.getPreSymbolTable();

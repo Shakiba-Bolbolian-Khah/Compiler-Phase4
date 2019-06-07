@@ -367,18 +367,18 @@ public class byteCodeGenerator implements IVisitor<Void> {
                 if (!isLhs) {
 
                     if(typeName.equals("int") || typeName.equals("bool")){
-                        bufferedWriter.write("iload_"+index+"\n");
+                        bufferedWriter.write("iload "+index+"\n");
                     }
                     else{
-                        bufferedWriter.write("aload_"+index+"\n");
+                        bufferedWriter.write("aload "+index+"\n");
                     }
                 }
                 else{
                     if(typeName.equals("int") || typeName.equals("bool")){
-                        lhsNode = "istore_"+index;
+                        lhsNode = "istore "+index;
                     }
                     else{
-                        lhsNode = "astore_"+index;
+                        lhsNode = "astore "+index;
                     }
                 }
             }
@@ -684,6 +684,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(Assign assignStat) {
+        System.out.println("in assignStat");
         lhsAssign = true;
         assignStat.getLvalue().accept(this);
         lhsAssign = false;
@@ -691,6 +692,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
         assignStat.getRvalue().accept(this);
 
         try {
+            System.out.println("lhsNode is:"+lhsNode);
             bufferedWriter.write(lhsNode);
             bufferedWriter.write("\n");
             lhsNode = "";
@@ -835,6 +837,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     public Void visit(LocalVarDef localVarDef) {
         indexCount++;
         SymbolTable.setMustBeUsedAfterDefCount(indexCount);
+        System.out.println("indexCount in localVarDef is "+indexCount);
         lhsAssign = true;
         localVarDef.getLocalVarName().accept(this);
         lhsAssign = false;
@@ -842,6 +845,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
         localVarDef.getInitialValue().accept(this);
 
         try {
+            System.out.println("lhsNode is:"+lhsNode);
             bufferedWriter.write(lhsNode);
             bufferedWriter.write("\n");
             lhsNode = "";
@@ -1046,14 +1050,14 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
     @Override
     public Void visit(ParameterDeclaration parameterDeclaration) {
-        indexCount++;
-        SymbolTable.setMustBeUsedAfterDefCount(indexCount);
         return null;
     }
 
     @Override
     public Void visit(MethodDeclaration methodDeclaration) {
         System.out.println("in first of methodDeclaration with name:"+methodDeclaration.getName().getName());
+        indexCount = 0;
+        SymbolTable.setMustBeUsedAfterDefCount(indexCount);
 
         try {
             String accessModifier = methodDeclaration.getAccessModifier().toStr();
@@ -1061,6 +1065,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
             String args = "";
             String returnType = methodDeclaration.getReturnType().getCode();
             for(ParameterDeclaration arg: methodDeclaration.getArgs()){
+                indexCount++;
+                SymbolTable.setMustBeUsedAfterDefCount(indexCount);
                 args += arg.getType().getCode();
             }
             bufferedWriter.write(".method " + accessModifier + " " + methodName + "(" + args + ")" + returnType);
@@ -1071,10 +1077,8 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write("\n");
 
             SymbolTable.pushFromQueue();
-            indexCount = 0;
-            SymbolTable.setMustBeUsedAfterDefCount(indexCount);
             for(Statement stmt:methodDeclaration.getBody()){
-                System.out.println("in for of methodDeclaration");
+               // System.out.println("in for of methodDeclaration");
                 stmt.accept(this);
             }
 
@@ -1084,7 +1088,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
         } catch (IOException e) {
             System.out.println("in methodDeclaration");
         }
-        System.out.println("end of methodDeclaration");
+        //System.out.println("end of methodDeclaration");
         return null;
     }
 
