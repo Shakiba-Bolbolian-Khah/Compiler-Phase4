@@ -1,4 +1,4 @@
-entry class test2:
+/*entry class test2:
 
     public field j int;
     function main() returns int:
@@ -20,5 +20,27 @@ entry class test2:
         end
         return 0;
     end
+end*/
+
+class A:
+    public field b int;
+    function c(y:Any) returns int:
+        return 3;
+    end
 end
+
+entry class B:
+    function main() returns int:
+        var x = new A();
+        x.b = 1;
+        var k = new Any();
+        print(x.c(k));
+        return 0;
+    end
+end
+
+
+//parameter of methodCall
+//newarray bool is wrong
+//
 

@@ -17,6 +17,6 @@ public class BoolType extends SingleType {
 
     @Override
     public String getCode() {
-        return "Z";
+        return "I";
     }
 }

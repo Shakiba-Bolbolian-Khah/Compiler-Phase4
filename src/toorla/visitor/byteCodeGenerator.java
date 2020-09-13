@@ -56,6 +56,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
     private boolean returned;
 
     private int indexCount;
+    private boolean hasAny;
 
     private ExpressionTypeExtractor expressionTypeExtractor;
 
@@ -70,6 +71,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
         initBody = "";
         returned = false;
         indexCount = 0;
+        hasAny = false;
     }
 
     private  FileWriter bufferedWriter;
@@ -325,14 +327,16 @@ public class byteCodeGenerator implements IVisitor<Void> {
         String argCode = "";
         for(Expression arg:methodCall.getArgs()){
             arg.accept(this);
-            Type argType = arg.accept(expressionTypeExtractor);
-            argCode += (argType.getCode());
         }
+
 
         if(methodCall.getInstance().toString().equals("(Self)")){
 
             try {
                 MethodSymbolTableItem methodSymbolTableItem =(MethodSymbolTableItem) SymbolTable.top().get("method_"+methodCall.getMethodName().getName());
+                for(Type argType:methodSymbolTableItem.getArgumentsTypes()){
+                    argCode += (argType.getCode());
+                }
                 Type returnType = methodSymbolTableItem.getReturnType();
                 bufferedWriter.write("invokevirtual "+currentClass+"/"+ methodCall.getMethodName().getName() + "("+argCode+")"+returnType.getCode()+"\n");
             } catch (IOException | ItemNotFoundException e) {
@@ -344,6 +348,9 @@ public class byteCodeGenerator implements IVisitor<Void> {
                 ClassSymbolTableItem classSymbolTableItem = (ClassSymbolTableItem) SymbolTable.root.get("class_"+instanceType.toString());
                 SymbolTable classSymbolTable = classSymbolTableItem.getSymbolTable();
                 MethodSymbolTableItem methodSymbolTableItem = (MethodSymbolTableItem) classSymbolTable.get("method_"+methodCall.getMethodName().getName());
+                for(Type argType:methodSymbolTableItem.getArgumentsTypes()){
+                    argCode += (argType.getCode());
+                }
                 Type returnType = methodSymbolTableItem.getReturnType();
 
                 bufferedWriter.write("invokevirtual class_"+instanceType.toString()+"/"+methodCall.getMethodName().getName()+"("+argCode+")"+returnType.getCode()+"\n");
@@ -439,7 +446,7 @@ public class byteCodeGenerator implements IVisitor<Void> {
             newArray.getLength().accept(this);
             String arrayType = newArray.getType().toString();
             if( arrayType.equals("int") || arrayType.equals("bool")){
-                bufferedWriter.write("newarray "+arrayType);
+                bufferedWriter.write("newarray int");
             }
             else if( arrayType.equals("string")){
                 bufferedWriter.write("anewarray java/lang/String");
@@ -922,10 +929,14 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
         String className = "class_"+classDeclaration.getName().getName();
         currentClass = className;
+
+        if(className.equals("class_Any"))
+            hasAny = true;
+
         expressionTypeExtractor.setCurrentClass(classDeclaration);
         String parentName;
         if(classDeclaration.getParentName().getName() == null)
-            parentName = "java/lang/Object";
+            parentName = "class_Any";
         else
             parentName = "class_"+ classDeclaration.getParentName().getName();
 
@@ -984,12 +995,16 @@ public class byteCodeGenerator implements IVisitor<Void> {
 
         String className = "class_"+entryClassDeclaration.getName().getName();
         currentClass = className;
+
+        if(className.equals("class_Any"))
+            hasAny = true;
+
         expressionTypeExtractor.setCurrentClass(entryClassDeclaration);
         entryClass = className;
         String parentName;
         System.out.println(entryClassDeclaration.getParentName().getName());
         if(entryClassDeclaration.getParentName().getName() == null)
-            parentName = "java/lang/Object";
+            parentName = "class_Any";
         else
             parentName = "class_"+ entryClassDeclaration.getParentName().getName();
 
@@ -1147,6 +1162,28 @@ public class byteCodeGenerator implements IVisitor<Void> {
             bufferedWriter.write(".end method");
             bufferedWriter.write("\n");
             bufferedWriter.close();
+
+            if(! hasAny) {
+                classFileMaker("class_Any");
+                bufferedWriter.write(".class public class_Any\n");
+                bufferedWriter.write(".super java/lang/Object\n");
+                bufferedWriter.write(".method public <init>()V");
+                bufferedWriter.write("\n");
+                bufferedWriter.write(".limit locals 100");
+                bufferedWriter.write("\n");
+                bufferedWriter.write(".limit stack 10000");
+                bufferedWriter.write("\n");
+                bufferedWriter.write("aload_0");
+                bufferedWriter.write("\n");
+                bufferedWriter.write("invokespecial " + "java/lang/Object" + "/<init>()V");
+                bufferedWriter.write("\n");
+                bufferedWriter.write("return");
+                bufferedWriter.write("\n");
+                bufferedWriter.write(".end method");
+                bufferedWriter.write("\n");
+                bufferedWriter.close();
+            }
+
 
         } catch (IOException e) {
             System.out.println("in program");
